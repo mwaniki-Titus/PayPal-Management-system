@@ -1,0 +1,41 @@
+.side-menu {
+
+    .menu-heading {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    .menu-down {
+      display: flex;
+      flex-direction: column;
+ 
+  
+      .menu-item {
+        display: flex;
+        flex-direction: row;
+      
+        
+        margin-bottom: 10px;
+        gap: 2rem;
+  
+        img {
+          width: 30px; 
+          height: 30px; 
+        }
+  
+        p {
+          margin-top: 5px;
+          font-size: 14px;
+          font-weight: bold;
+          color: #333;
+        }
+      }
+  
+      .menu-item:hover {
+        cursor: pointer;
+        background-color: #f0f0f0; 
+        border-radius: 5px;
+      }
+    }
+  }
+  
