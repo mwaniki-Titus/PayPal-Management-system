@@ -1,6 +1,6 @@
+// CashAdvance.scss
 
-
-.EmployeeList-table {
+.cash-advance-table {
     width: 100%;
   
     .TopMenu {
@@ -42,6 +42,7 @@
         padding: 8px 16px;
         border-radius: 5px;
         cursor: pointer;
+        margin: 4px;
   
         &:hover {
           background-color: #218838;

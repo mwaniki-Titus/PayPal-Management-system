@@ -26,25 +26,30 @@ function SideMenu() {
       icon: attendanceIcon,
       path: '/attendance',
     },
+    // {
+    //   name: 'Employee',
+    //   icon: employeeIcon,
+    //   isOpen: isEmployeeOpen,
+    //   toggleDropdown: () => setIsEmployeeOpen(!isEmployeeOpen),
+    //   subItems: [
+    //     {
+    //       name: 'Cash Advance',
+    //       path: '/cash-advance',
+    //     },
+    //     {
+    //       name: 'Overtime',
+    //       path: '/overtime',
+    //     },
+    //     {
+    //       name: 'Employee List',
+    //       path: '/employee-list',
+    //     },
+    //   ],
+    // },
     {
       name: 'Employee',
       icon: employeeIcon,
-      isOpen: isEmployeeOpen,
-      toggleDropdown: () => setIsEmployeeOpen(!isEmployeeOpen),
-      subItems: [
-        {
-          name: 'Cash Advance',
-          path: '/cash-advance',
-        },
-        {
-          name: 'Overtime',
-          path: '/overtime',
-        },
-        {
-          name: 'Employee List',
-          path: '/employee-list',
-        },
-      ],
+      path: '/employee',
     },
     {
       name: 'Position',

@@ -1,58 +1,96 @@
+
+
 .side-menu {
-  .profile{
-   
-    flex-wrap: wrap;
-    margin: 10px;
+  width: 250px; 
+  background-color: #f7f4f4; 
+  border-right: 1px solid #ccc;
+  padding: 20px; 
+
+  .profile {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
 
-    .ProfileName{
-      display: flex;
-      flex-direction: column;
+    .avatar {
+      width: 50px; 
+      height: 50px; 
+      border-radius: 50%;
+      margin-right: 10px; 
     }
-    
-  }
-  .profile img {
-    width: 70px;
-    height: 70px;
+
+    .ProfileName {
+      h5 {
+        margin: 0;
+        font-size: 1rem; /* Adjust font size as needed */
+        color: #333; /* Profile name color */
+      }
+    }
   }
 
+  .menu-down {
     .menu-heading {
-      text-align: center;
-      gap: 1rem;
+      margin-bottom: 10px;
+
+      h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: #555; 
+      }
     }
-  
-    .menu-down {
+
+    .menu-item {
       display: flex;
-      flex-direction: column;
- 
-  
-      .menu-item {
+      align-items: center;
+      margin-bottom: 10px;
+      img {
+        width: 30px; 
+        height: 30px; 
+        margin: 5px;
+      }
+
+      .menu-dropdown {
         display: flex;
-        flex-direction: row;
-      
-        
-        margin-bottom: 5px;
-        gap: 2rem;
-  
-        img {
-          width: 30px; 
-          height: 30px; 
-        }
-  
-        p {
-          margin-top: 5px;
-          font-size: 14px;
-          font-weight: bold;
-          color: #333;
-        }
-      }
-  
-      .menu-item:hover {
+        align-items: center;
         cursor: pointer;
-        background-color: #f0f0f0; 
-        border-radius: 5px;
+
+        img {
+          width: 20px; 
+          height: 20px; 
+          margin-right: 10px; 
+        }
+
+        p {
+          margin: 0;
+          font-size: 1rem; 
+          color: #333; 
+          
+        }
+
+        span {
+          margin-bottom: auto; 
+        }
       }
+
+      .submenu {
+        // padding-left: 0px; 
+        // border-left: 2px solid #ccc;
+        
+        
+        .submenu-item {
+          margin-bottom: 5px;
+          display: flex;
+
+          p {
+            margin: 0;
+            font-size: 0.9rem; 
+            color: #555;
+          }
+        }
+      }
+    }
+
+    .menu-item:last-child {
+      margin-bottom: 0; 
     }
   }
-  
+}

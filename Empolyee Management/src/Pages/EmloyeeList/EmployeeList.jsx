@@ -1,11 +1,11 @@
 // Attendance.js
 
 import React from 'react';
-import './Attendance.scss';
+import './EmployeeList.scss';
 import DeleteIcon from '../../assets/icons8-delete-30.png';
 import EditIcon from '../../assets/icons8-edit-24.png';
 
-const Attendance = () => {
+const EmployeeList = () => {
     const employees = [
         { id: 1, name: 'John Doe', email: 'john@example.com', position: 'Manager', schedule: 'Mon-Fri, 9:00 AM - 5:00 PM' },
         { id: 2, name: 'Jane Smith', email: 'jane@example.com', position: 'Developer', schedule: 'Mon-Fri, 9:30 AM - 6:00 PM' },
@@ -23,7 +23,7 @@ const Attendance = () => {
     };
 
     return (
-        <div className="attendance-table">
+        <div className="EmployeeList -table">
             <div className="TopMenu">
                 <div className="CurrentPage">
                     <h1>EmployeeList</h1>
@@ -66,4 +66,4 @@ const Attendance = () => {
     );
 };
 
-export default Attendance;
+export default EmployeeList;

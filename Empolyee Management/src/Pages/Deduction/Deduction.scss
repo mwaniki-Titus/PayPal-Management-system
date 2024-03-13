@@ -1,0 +1,85 @@
+/* Deductions.scss */
+
+.deductions-table {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .TopMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .CurrentPage h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .Navigate button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .Navigate button:hover {
+    background-color: #0056b3;
+  }
+  
+  .addNew button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .addNew button:hover {
+    background-color: #218838;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tbody tr:hover {
+    background-color: #eaeaea;
+  }
+  
+  button {
+    background-color: #c7c4c4;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    margin: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #c82333;
+  }
+  
