@@ -3,7 +3,7 @@ import './App.scss';
 
 import Navbar from './Layout/Navbar';
 import Sidebar from './Layout/Sidebar';
-import mainContent from './Layout/MainContent';
+import MainContent from './Layout/MainContent';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
           <Sidebar />
         </div>
         <div className="mainContent">
-            <mainContent />
+            <MainContent />
         </div>
       </div>
     </div>

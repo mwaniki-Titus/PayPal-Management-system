@@ -1,0 +1,76 @@
+// Payroll.scss
+
+.payroll-table {
+  
+  .TopMenu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background-color: #ccc;
+
+    .CurrentPage {
+      h1 {
+        margin: 0;
+        font-size: 24px;
+        background-color:white;
+
+      }
+    }
+
+    .Navigate {
+      h2 {
+        margin: 0;
+        font-size: 16px;
+        color: #ccc;
+        background-color: #ccc;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .addNew {
+    margin-bottom: 20px;
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+  
+      th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+      }
+  
+      th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        text-align: left;
+      }
+  
+      td {
+        text-align: center;
+      }
+  
+      .icon {
+        width: 20px; 
+        margin-right: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+  

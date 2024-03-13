@@ -1,5 +1,5 @@
 import './Sidebar.scss'
-import SideMenu from '../Components/SideMenu';
+import SideMenu from '../Components/sidebar/SideMenu';
 
 
 const Sidebar = () => {

@@ -1,0 +1,30 @@
+.NavContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+      .NavLeft {
+    display: flex;
+    align-items: center;
+  }
+  
+  .NavRight {
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu-icon,
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 10px;
+  }
+  }
+  
+
+  
+  
+  

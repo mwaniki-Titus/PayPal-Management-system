@@ -10,16 +10,16 @@
 .mainBottom {
     display: flex;
     justify-content: space-between;
-    background-color: #717171;
+    background-color: #e9e8e8;
     height: 100vh; 
 
     .sidebar {
         width: 17%;
-        background-color: 504A4A;
+        background-color: white;
     }
     .mainContent {
         width: 84%;
-        background-color: #33332d;
+        background-color:rgb(167, 164, 164);
         overflow: scroll;
     }
 

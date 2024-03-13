@@ -1,9 +1,10 @@
 import './Navbar.scss';
+import NavContent from '../Components/NavContainer/NavContent';
 
 const Navbar = () => {
     return (
         <div className='Navbar'>
-        This is the navbar
+          <NavContent/>
         </div>
     )
 }

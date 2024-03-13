@@ -1,0 +1,44 @@
+.TopDashboard {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    // border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    .allReports{
+        display: flex;
+        flex-direction: row;
+    }
+  
+    .totalNumber,
+    .percentage,
+    .ontime,
+    .late {
+      display: flex;
+      align-items: center;
+       flex-direction: row;
+      text-align: center;
+      padding: 10px;
+      background-color: #ad5f5f;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 250px;
+      height: 100px;
+      margin-top: 10px;
+    }
+  
+    .percentage {
+      margin-left: 10px;
+    }
+  
+    .ontime {
+      margin-left: 10px;
+    }
+  
+    .late {
+      margin-left: 10px;
+    }
+  }
+  
+  
