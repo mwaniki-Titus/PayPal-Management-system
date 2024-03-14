@@ -14,43 +14,43 @@ function SideMenu() {
   const [isEmployeeOpen, setIsEmployeeOpen] = useState(false);
 
   const items = [
-    // { type: 'heading', name: 'Reports' },
-    // {
-    //   name: 'Dashboard',
-    //   icon: dashboardIcon,
-    //   path: '/dashboard',
-    // },
+    { type: 'heading', name: 'Reports' },
+    {
+      name: 'Dashboard',
+      icon: dashboardIcon,
+      path: '/dashboard',
+    },
     { type: 'heading', name: 'Manage' },
     {
       name: 'Attendance',
       icon: attendanceIcon,
       path: '/attendance',
     },
-    // {
-    //   name: 'Employee',
-    //   icon: employeeIcon,
-    //   isOpen: isEmployeeOpen,
-    //   toggleDropdown: () => setIsEmployeeOpen(!isEmployeeOpen),
-    //   subItems: [
-    //     {
-    //       name: 'Cash Advance',
-    //       path: '/cash-advance',
-    //     },
-    //     {
-    //       name: 'Overtime',
-    //       path: '/overtime',
-    //     },
-    //     {
-    //       name: 'Employee List',
-    //       path: '/employee-list',
-    //     },
-    //   ],
-    // },
     {
       name: 'Employee',
       icon: employeeIcon,
-      path: '/employee',
+      isOpen: isEmployeeOpen,
+      toggleDropdown: () => setIsEmployeeOpen(!isEmployeeOpen),
+      subItems: [
+        {
+          name: 'Cash Advance',
+          path: '/cash-advance',
+        },
+        {
+          name: 'Overtime',
+          path: '/overtime',
+        },
+        {
+          name: 'Employee List',
+          path: '/employee-list',
+        },
+      ],
     },
+    // {
+    //   name: 'Employee',
+    //   icon: employeeIcon,
+    //   path: '/employee',
+    // },
     {
       name: 'Position',
       icon: positionIcon,
@@ -80,6 +80,7 @@ function SideMenu() {
         <img src={Avatar} alt="Avatar" className="avatar" />
         <div className='ProfileName'>
           <h5>Phill</h5>
+        
         </div>  
       </div>
       <div className="menu-down">

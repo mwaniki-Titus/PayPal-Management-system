@@ -1,4 +1,11 @@
-.TopDashboard {
+
+
+.EmployeeDashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .TopDashboard {
     display: flex;
     align-items: center;
     padding: 20px;
@@ -39,6 +46,26 @@
     .late {
       margin-left: 10px;
     }
+    
+  .bottommDashboard {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
   }
+  
+  .timecheck,
+  .Attendtable {
+    margin-top: 20px;
+    flex: 1;
+  }
+  
+  .payroll {
+    width: 100%;
+    max-width: 600px; 
+  }
+  }
+  
   
   

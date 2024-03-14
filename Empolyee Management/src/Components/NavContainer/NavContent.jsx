@@ -16,6 +16,7 @@ const NavContent = () => {
                 </div>
                 <div className='ProfileName'>
                     <h5>Phill</h5>
+                      <button>logout</button>
 
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Chart from 'chart.js/auto';
+import './ReportsContent.scss'
 
 const GraphComponent = () => {
   const [selectedYear, setSelectedYear] = useState('2022');

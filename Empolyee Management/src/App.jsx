@@ -1,25 +1,23 @@
 import './App.scss';
 
-
-import Navbar from './Layout/Navbar';
-import Sidebar from './Layout/Sidebar';
 import MainContent from './Layout/MainContent';
+import Login from './Features/User/Login/Login';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'; 
+
+import Employee from './Employee/Layout/EmployeeDashboard';
+
 
 function App() {
   return (
     <div className='mainContainer'>
-      <div className="navbar">
-        <Navbar />
-      </div>
-      <div className="mainBottom">
-        <div className="sidebar">
-          <Sidebar />
-        </div>
-        <div className="mainContent">
-            <MainContent />
-        </div>
-      </div>
+          <Routes>
+          <Route path="/" element={<Login/>} />
+          <Route path="/*" element={<MainContent />} />
+          <Route path="/employee/*" element={<Employee />} />
+
+      </Routes>
     </div>
+    
   );
 }
 
