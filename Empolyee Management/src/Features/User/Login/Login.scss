@@ -1,81 +1,51 @@
-.container {
+.loginpage {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-image: url(https://plus.unsplash.com/premium_photo-1661414415246-3e502e2fb241?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+ 
+.form {
+  background-color: #f0f0f0;
+  padding: 80px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.form-wrapper {
-  width: 300px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.login {
+  display: flex;
+  flex-direction: column;
 }
 
-.form-wrapper h2 {
+h1 {
+  font-size: 24px;
   margin-bottom: 20px;
-  font-size: 1.5rem;
 }
 
-.input-group {
-  margin-bottom: 15px;
-  position: relative;
-}
-
-.input-group .bx {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.input-group input {
-  width: calc(100% - 20px);
-  padding: 10px 10px 10px 35px;
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 1rem;
 }
 
-.errors {
+p {
   color: red;
-  font-size: 0.8rem;
-  margin-top: 5px;
 }
 
-.error-message,
-.success-message {
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.error-message {
-  background-color: #ffcccc;
-}
-
-.success-message {
-  background-color: #ccffcc;
-}
-
-.signin-btn {
+.submit {
+  padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 10px 0;
-  width: 100%;
-  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.signin-btn:hover {
+.submit:hover {
   background-color: #0056b3;
 }
 
-b.pointer {
-  cursor: pointer;
-  color: #007bff;
 }
+

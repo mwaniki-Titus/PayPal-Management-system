@@ -4,7 +4,7 @@ import MainContent from './Layout/MainContent';
 import Login from './Features/User/Login/Login';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'; 
 
-import Employee from './Employee/Layout/EmployeeDashboard';
+import EmployeeDashboard from './Employee/Layout/Employee/EmployeeDashboard';
 
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
           <Routes>
           <Route path="/" element={<Login/>} />
           <Route path="/*" element={<MainContent />} />
-          <Route path="/employee/*" element={<Employee />} />
+          <Route path="/employeeDashboard/*" element={<EmployeeDashboard />} />
 
       </Routes>
     </div>

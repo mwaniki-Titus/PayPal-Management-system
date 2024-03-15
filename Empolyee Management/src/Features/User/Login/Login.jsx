@@ -63,7 +63,7 @@ const Login = () => {
     <div className="loginpage">
       <div className="form">
         <form action="" className="login" onSubmit={handleSubmit(onSubmit)}>
-          <h1>Welcome...</h1>
+          <h1>Holla...</h1>
           <input
             type="text"
             name="Email"

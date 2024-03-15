@@ -13,13 +13,17 @@ import './SideMenu.scss';
 function SideMenu() {
   const [isEmployeeOpen, setIsEmployeeOpen] = useState(false);
 
+  const toggleEmployeeDropdown = () => {
+    setIsEmployeeOpen(!isEmployeeOpen);
+  };
+
   const items = [
-    { type: 'heading', name: 'Reports' },
-    {
-      name: 'Dashboard',
-      icon: dashboardIcon,
-      path: '/dashboard',
-    },
+    // { type: 'heading', name: 'Reports' },
+    // {
+    //   name: 'Dashboard',
+    //   icon: dashboardIcon,
+    //   path: '/dashboard',
+    // },
     { type: 'heading', name: 'Manage' },
     {
       name: 'Attendance',
@@ -30,27 +34,22 @@ function SideMenu() {
       name: 'Employee',
       icon: employeeIcon,
       isOpen: isEmployeeOpen,
-      toggleDropdown: () => setIsEmployeeOpen(!isEmployeeOpen),
+      toggleDropdown: toggleEmployeeDropdown,
       subItems: [
         {
           name: 'Cash Advance',
-          path: '/cash-advance',
+          path: '/Employee/cash-advance',
         },
         {
           name: 'Overtime',
-          path: '/overtime',
+          path: '/employee/overtime',
         },
         {
           name: 'Employee List',
-          path: '/employee-list',
+          path: '/employee/employee-list',
         },
       ],
     },
-    // {
-    //   name: 'Employee',
-    //   icon: employeeIcon,
-    //   path: '/employee',
-    // },
     {
       name: 'Position',
       icon: positionIcon,
@@ -80,7 +79,6 @@ function SideMenu() {
         <img src={Avatar} alt="Avatar" className="avatar" />
         <div className='ProfileName'>
           <h5>Phill</h5>
-        
         </div>  
       </div>
       <div className="menu-down">
@@ -94,10 +92,14 @@ function SideMenu() {
           } else if (item.subItems && item.subItems.length > 0) {
             return (
               <div key={index} className="menu-item">
+               
                 <div className="menu-dropdown" onClick={item.toggleDropdown}>
+                
                   <img src={item.icon} alt={item.name} />
+                  <div>
                   <p>{item.name}</p>
-                  {item.isOpen ? <span>&#9660;</span> : <span>&#9658;</span>}
+                  </div>
+                  {item.isOpen ? <span>;</span> : <span></span>}
                 </div>
                 {item.isOpen && (
                   <div className="submenu">

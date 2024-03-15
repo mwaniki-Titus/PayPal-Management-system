@@ -1,71 +1,101 @@
-
-
 .EmployeeDashboard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+ width: 100%;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+overflow: scroll;
   .TopDashboard {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    background-color: #f0f0f0;
-    // border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    flex-direction: column;
-    .allReports{
-        display: flex;
-        flex-direction: row;
-    }
-  
-    .totalNumber,
-    .percentage,
-    .ontime,
-    .late {
+     
       display: flex;
-      align-items: center;
-       flex-direction: row;
-      text-align: center;
-      padding: 10px;
-      background-color: #ad5f5f;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      width: 200px;
-      height: 100px;
-      margin: 20px;
-    }
-  
-    .percentage {
-      margin-left: 10px;
-    }
-  
-    .ontime {
-      margin-left: 10px;
-    }
-  
-    .late {
-      margin-left: 10px;
-    }
-    
+      justify-content: space-between;
+      margin-bottom: 20px;
+
+      .allReports {
+         
+          display: flex;
+          align-items: center;
+
+          .totalNumber, .total {
+             
+              margin-right: 20px;
+
+              h1 {
+                  font-size: 24px;
+                  color: #333;
+                  margin: 0;
+              }
+          }
+
+          .ontime, .late {
+             
+              margin-right: 10px;
+              font-size: 16px;
+          }
+      }
+  }
+
   .bottommDashboard {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 20px;
+      
+      display: flex;
+      justify-content: space-between;
+
+      .employeeProfile {
+       
+          width: 300px;
+          padding: 20px;
+          background-color: #fff;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+          div {
+              margin-bottom: 10px;
+          }
+      }
+
+      .timecheck {
+          
+          // flex-grow: 1;
+          margin: 20px;
+          background-color: #fff;
+          border-radius: 10px;
+          align-items: center;
+          width: 300px;
+
+          h3 {
+              font-size: 18px;
+              margin-bottom: 10px;
+              margin-left: 50px;
+          }
+      }
   }
-  
-  .timecheck,
-  .Attendtable {
-    margin-top: 20px;
-    flex: 1;
+
+  .employeebottom {
+    
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+
+      .Attend, .payroll {
+        
+          flex-basis: 48%;
+          background-color: #fff;
+
+          .Attendtable {
+        
+              background-color: #fff;
+              border-radius: 10px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+              padding: 20px;
+
+              h3 {
+                  font-size: 18px;
+                  margin-bottom: 10px;
+              }
+          }
+      }
   }
-  
-  .payroll {
-    width: 100%;
-    max-width: 600px; 
-  }
-  }
+}
+
   
   
   
