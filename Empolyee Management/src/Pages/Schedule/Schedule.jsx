@@ -15,11 +15,11 @@ const ScheduleTable = () => {
         date: ''
     });
     const [schedule, setSchedule] = useState([
-        { id: 1, employeeName: 'John Doe', startTime: '09:00', endTime: '17:00', date: '2024-03-12' },
-        { id: 2, employeeName: 'Jane Smith', startTime: '10:00', endTime: '18:00', date: '2024-03-12' },
-        { id: 3, employeeName: 'Alice Johnson', startTime: '08:30', endTime: '16:30', date: '2024-03-13' },
-        { id: 4, employeeName: 'Bob Brown', startTime: '09:30', endTime: '17:30', date: '2024-03-13' },
-        { id: 5, employeeName: 'Eve Williams', startTime: '09:00', endTime: '17:00', date: '2024-03-14' }
+        { id: 1, employeeName: 'John Doe', startTime: '09:00', endTime: '17:00', date: '2024-03-12',},
+        { id: 2, employeeName: 'Jane Smith', startTime: '10:00', endTime: '18:00', date: '2024-03-12', },
+        { id: 3, employeeName: 'Alice Johnson', startTime: '08:30', endTime: '16:30', date: '2024-03-13',  },
+        { id: 4, employeeName: 'Bob Brown', startTime: '09:30', endTime: '17:30', date: '2024-03-13',  },
+        { id: 5, employeeName: 'Eve Williams', startTime: '09:00', endTime: '17:00', date: '2024-03-14',  }
     ]);
 
     const handleEdit = (id) => {
@@ -58,7 +58,8 @@ const ScheduleTable = () => {
             employeeName: '',
             startTime: '',
             endTime: '',
-            date: ''
+            date: '',
+            // overtime:''
         });
         setShowForm(false);
         setEditMode(false);
@@ -96,6 +97,7 @@ const ScheduleTable = () => {
                         <th>Start Time</th>
                         <th>End Time</th>
                         <th>Date</th>
+                        {/* <th>Overtime</th> */}
                         <th>Tools</th>
                     </tr>
                 </thead>
@@ -106,6 +108,7 @@ const ScheduleTable = () => {
                             <td>{item.startTime}</td>
                             <td>{item.endTime}</td>
                             <td>{item.date}</td>
+                            {/* <td>{item.overtime}</td> */}
                             <td>
                                 <button onClick={() => handleEdit(item.id)}>Edit</button>
                                 <button onClick={() => handleDelete(item.id)}>Delete</button>

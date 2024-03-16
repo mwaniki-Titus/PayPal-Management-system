@@ -12,14 +12,15 @@ const Attendance = () => {
         name: '',
         position: '',
         timeIn: '',
-        timeOut: ''
+        timeOut: '',
+        overTime:''
     });
     const [employees, setEmployees] = useState([
-        { id: 1, name: 'John Doe', position: 'Manager', timeIn: '09:00 AM', timeOut: '05:00 PM' },
-        { id: 2, name: 'Jane Smith', position: 'Developer', timeIn: '09:30 AM', timeOut: '06:00 PM' },
-        { id: 3, name: 'Alice Johnson', position: 'Designer', timeIn: '10:00 AM', timeOut: '05:30 PM' },
-        { id: 4, name: 'Bob Brown', position: 'HR', timeIn: '09:15 AM', timeOut: '06:15 PM' },
-        { id: 5, name: 'Eve Williams', position: 'Accountant', timeIn: '09:45 AM', timeOut: '05:45 PM' }
+        { id: 1, name: 'John Doe', position: 'Manager', timeIn: '09:00 AM', timeOut: '05:00 PM',overTime: '3' },
+        { id: 2, name: 'Jane Smith', position: 'Developer', timeIn: '09:30 AM', timeOut: '06:00 PM',overTime: '3' },
+        { id: 3, name: 'Alice Johnson', position: 'Designer', timeIn: '10:00 AM', timeOut: '05:30 PM',overTime: '3' },
+        { id: 4, name: 'Bob Brown', position: 'HR', timeIn: '09:15 AM', timeOut: '06:15 PM',overTime: '3' },
+        { id: 5, name: 'Eve Williams', position: 'Accountant', timeIn: '09:45 AM', timeOut: '05:45 PM',overTime: '3' }
     ]);
 
     const handleEdit = (id) => {
@@ -58,7 +59,8 @@ const Attendance = () => {
             name: '',
             position: '',
             timeIn: '',
-            timeOut: ''
+            timeOut: '',
+            overTime:''
         });
         setShowForm(false);
         setEditMode(false);
@@ -98,6 +100,7 @@ const Attendance = () => {
                         <th>Position</th>
                         <th>Time In</th>
                         <th>Time Out</th>
+                        <th>Overtime</th>
                         <th>Tools</th>
                     </tr>
                 </thead>
@@ -109,6 +112,7 @@ const Attendance = () => {
                             <td>{employee.position}</td>
                             <td>{employee.timeIn}</td>
                             <td>{employee.timeOut}</td>
+                            <td>{employee.overTime}</td>
                             <td>
                                 <button onClick={() => handleEdit(employee.id)}>Edit</button>
                                 <button onClick={() => handleDelete(employee.id)}>Delete</button>
