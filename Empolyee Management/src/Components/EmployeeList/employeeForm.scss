@@ -1,0 +1,87 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* ensure the modal appears above other content */
+    
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      width: 90%;
+      max-height: 80%;
+      overflow-y: auto; /* enable scrolling if content exceeds modal height */
+    }
+  
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+  
+      h2 {
+        margin: 0;
+      }
+  
+      .close-btn {
+        cursor: pointer;
+        border: none;
+        background: none;
+        font-size: 24px;
+        color: #888;
+        transition: color 0.3s;
+  
+        &:hover {
+          color: #555;
+        }
+      }
+    }
+  
+    .modal-body {
+      /* Add styles as needed */
+      margin-bottom: 20px;
+  
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+  
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+  
+      button[type="submit"] {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+  
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+    }
+  }
+  

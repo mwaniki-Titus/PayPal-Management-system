@@ -1,70 +1,41 @@
 import React, { useState } from 'react';
+import ModalForm from '../../Components/Attendance/attendanceForm'
 import './Attendance.scss';
-import Delete from '../../assets/icons8-delete-30.png';
-import Edit from '../../assets/icons8-edit-24.png';
+
 
 const Attendance = () => {
-    const [showForm, setShowForm] = useState(false);
-    const [editMode, setEditMode] = useState(false);
-    const [editedEmployeeId, setEditedEmployeeId] = useState(null);
-    const [newEmployee, setNewEmployee] = useState({
-        id: '',
-        name: '',
-        position: '',
-        timeIn: '',
-        timeOut: '',
-        overTime:''
-    });
+    const [showModal, setShowModal] = useState(false);
     const [employees, setEmployees] = useState([
-        { id: 1, name: 'John Doe', position: 'Manager', timeIn: '09:00 AM', timeOut: '05:00 PM',overTime: '3' },
-        { id: 2, name: 'Jane Smith', position: 'Developer', timeIn: '09:30 AM', timeOut: '06:00 PM',overTime: '3' },
-        { id: 3, name: 'Alice Johnson', position: 'Designer', timeIn: '10:00 AM', timeOut: '05:30 PM',overTime: '3' },
-        { id: 4, name: 'Bob Brown', position: 'HR', timeIn: '09:15 AM', timeOut: '06:15 PM',overTime: '3' },
-        { id: 5, name: 'Eve Williams', position: 'Accountant', timeIn: '09:45 AM', timeOut: '05:45 PM',overTime: '3' }
+        { id: 1, name: 'John Doe', position: 'Manager', timeIn: '09:00 AM', timeOut: '05:00 PM', overTime: '3' },
+        { id: 2, name: 'Jane Smith', position: 'Developer', timeIn: '09:30 AM', timeOut: '06:00 PM', overTime: '3' },
+        { id: 3, name: 'Alice Johnson', position: 'Designer', timeIn: '10:00 AM', timeOut: '05:30 PM', overTime: '3' },
+        { id: 4, name: 'Bob Brown', position: 'HR', timeIn: '09:15 AM', timeOut: '06:15 PM', overTime: '3' },
+        { id: 5, name: 'Eve Williams', position: 'Accountant', timeIn: '09:45 AM', timeOut: '05:45 PM', overTime: '3' }
     ]);
 
+    const toggleModal = () => {
+        setShowModal(!showModal);
+    };
+
+    const handleAddNew = () => {
+        setShowModal(true);
+    };
+
+    const handleAddAttendance = (newEmployee) => {
+        setEmployees([...employees, { ...newEmployee, id: employees.length + 1 }]);
+        setShowModal(false);
+    };
+
     const handleEdit = (id) => {
-        setEditMode(true);
-        setEditedEmployeeId(id);
-        const employeeToEdit = employees.find(employee => employee.id === id);
-        setNewEmployee(employeeToEdit);
-        setShowForm(true);
+        // Implement logic to handle editing an employee
+        console.log("Edit button clicked for employee ID:", id);
+        // You can implement further logic to open a modal or navigate to an edit page
     };
 
     const handleDelete = (id) => {
+        // Implement logic to handle deleting an employee
         const updatedEmployees = employees.filter(employee => employee.id !== id);
         setEmployees(updatedEmployees);
-    };
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setNewEmployee({ ...newEmployee, [name]: value });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (editMode) {
-            const updatedEmployees = employees.map(employee => {
-                if (employee.id === editedEmployeeId) {
-                    return { ...newEmployee };
-                }
-                return employee;
-            });
-            setEmployees(updatedEmployees);
-        } else {
-            setEmployees([...employees, { ...newEmployee, id: employees.length + 1 }]);
-        }
-        setNewEmployee({
-            id: '',
-            name: '',
-            position: '',
-            timeIn: '',
-            timeOut: '',
-            overTime:''
-        });
-        setShowForm(false);
-        setEditMode(false);
-        setEditedEmployeeId(null);
     };
 
     return (
@@ -79,18 +50,10 @@ const Attendance = () => {
             </div>
 
             <div className="addNew">
-                <button onClick={() => setShowForm(true)}>+ New</button>
+                <button onClick={handleAddNew}>+ New</button>
             </div>
 
-            {showForm && (
-                <form onSubmit={handleSubmit}>
-                    <input type="text" name="name" placeholder="Employee Name" value={newEmployee.name} onChange={handleInputChange} />
-                    <input type="text" name="position" placeholder="Position" value={newEmployee.position} onChange={handleInputChange} />
-                    <input type="text" name="timeIn" placeholder="Time In" value={newEmployee.timeIn} onChange={handleInputChange} />
-                    <input type="text" name="timeOut" placeholder="Time Out" value={newEmployee.timeOut} onChange={handleInputChange} />
-                    <button type="submit">{editMode ? 'Update' : 'Add'}</button>
-                </form>
-            )}
+            {showModal && <ModalForm handleAddAttendance={handleAddAttendance} toggleModal={toggleModal} />}
 
             <table>
                 <thead>
@@ -126,3 +89,4 @@ const Attendance = () => {
 };
 
 export default Attendance;
+

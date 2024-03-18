@@ -1,19 +1,9 @@
 import React, { useState } from 'react';
 import './EmployeeList.scss';
-import DeleteIcon from '../../assets/icons8-delete-30.png';
-import EditIcon from '../../assets/icons8-edit-24.png';
+import ModalForm from '../../Components/Attendance/attendanceForm';
 
 const EmployeeList = () => {
-    const [showForm, setShowForm] = useState(false);
-    const [editMode, setEditMode] = useState(false);
-    const [editedEmployeeId, setEditedEmployeeId] = useState(null);
-    const [newEmployee, setNewEmployee] = useState({
-        id: '',
-        name: '',
-        email: '',
-        position: '',
-        schedule: ''
-    });
+    const [showModal, setShowModal] = useState(false);
     const [employees, setEmployees] = useState([
         { id: 1, name: 'John Doe', email: 'john@example.com', position: 'Manager', schedule: 'Mon-Fri, 9:00 AM - 5:00 PM' },
         { id: 2, name: 'Jane Smith', email: 'jane@example.com', position: 'Developer', schedule: 'Mon-Fri, 9:30 AM - 6:00 PM' },
@@ -21,48 +11,33 @@ const EmployeeList = () => {
         { id: 4, name: 'Bob Brown', email: 'bob@example.com', position: 'HR', schedule: 'Mon-Fri, 9:15 AM - 6:15 PM' },
         { id: 5, name: 'Eve Williams', email: 'eve@example.com', position: 'Accountant', schedule: 'Mon-Fri, 9:45 AM - 5:45 PM' }
     ]);
+    const apiUrl = 'http://localhost:8000/api/employees/add';
 
-    const handleEdit = (id) => {
-        setEditMode(true);
-        setEditedEmployeeId(id);
-        const employeeToEdit = employees.find(employee => employee.id === id);
-        setNewEmployee(employeeToEdit);
-        setShowForm(true);
+    const handleAddEmployee = async (newEmployee) => {
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newEmployee),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to add employee');
+            }
+
+            const data = await response.json();
+            setEmployees([...employees, data]);
+            setShowModal(false);
+        } catch (error) {
+            console.error('Error adding employee:', error);
+        }
     };
 
     const handleDelete = (id) => {
         const updatedEmployees = employees.filter(employee => employee.id !== id);
         setEmployees(updatedEmployees);
-    };
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setNewEmployee({ ...newEmployee, [name]: value });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (editMode) {
-            const updatedEmployees = employees.map(employee => {
-                if (employee.id === editedEmployeeId) {
-                    return { ...newEmployee };
-                }
-                return employee;
-            });
-            setEmployees(updatedEmployees);
-        } else {
-            setEmployees([...employees, { ...newEmployee, id: employees.length + 1 }]);
-        }
-        setNewEmployee({
-            id: '',
-            name: '',
-            email: '',
-            position: '',
-            schedule: ''
-        });
-        setShowForm(false);
-        setEditMode(false);
-        setEditedEmployeeId(null);
     };
 
     return (
@@ -76,18 +51,10 @@ const EmployeeList = () => {
                 </div>
             </div>
             <div className="addNew">
-                <button onClick={() => setShowForm(true)}>+ New</button>
+                <button onClick={() => setShowModal(true)}>+ New</button>
             </div>
 
-            {showForm && (
-                <form onSubmit={handleSubmit}>
-                    <input type="text" name="name" placeholder="Employee Name" value={newEmployee.name} onChange={handleInputChange} />
-                    <input type="email" name="email" placeholder="Email" value={newEmployee.email} onChange={handleInputChange} />
-                    <input type="text" name="position" placeholder="Position" value={newEmployee.position} onChange={handleInputChange} />
-                    <input type="text" name="schedule" placeholder="Schedule" value={newEmployee.schedule} onChange={handleInputChange} />
-                    <button type="submit">{editMode ? 'Update' : 'Add'}</button>
-                </form>
-            )}
+            <ModalForm isOpen={showModal} onClose={() => setShowModal(false)} onSubmit={handleAddEmployee} />
 
             <table>
                 <thead>
@@ -109,7 +76,7 @@ const EmployeeList = () => {
                             <td>{employee.position}</td>
                             <td>{employee.schedule}</td>
                             <td>
-                                <button onClick={() => handleEdit(employee.id)}>Edit</button>
+                                <button>Edit</button>
                                 <button onClick={() => handleDelete(employee.id)}>Delete</button>
                             </td>
                         </tr>
@@ -121,4 +88,3 @@ const EmployeeList = () => {
 };
 
 export default EmployeeList;
-
