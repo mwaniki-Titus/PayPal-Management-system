@@ -1,44 +1,45 @@
+
 import React, { useState } from 'react';
 import './EmployeeList.scss';
-import ModalForm from '../../Components/Attendance/attendanceForm';
+import { useGetEmployeesQuery, useDeleteEmployeeMutation, useAddEmployeeMutation } from '../../Features/User/UserApi';
+import ModalForm from './EmployeeForm';
 
 const EmployeeList = () => {
-    const [showModal, setShowModal] = useState(false);
-    const [employees, setEmployees] = useState([
-        { id: 1, name: 'John Doe', email: 'john@example.com', position: 'Manager', schedule: 'Mon-Fri, 9:00 AM - 5:00 PM' },
-        { id: 2, name: 'Jane Smith', email: 'jane@example.com', position: 'Developer', schedule: 'Mon-Fri, 9:30 AM - 6:00 PM' },
-        { id: 3, name: 'Alice Johnson', email: 'alice@example.com', position: 'Designer', schedule: 'Mon-Fri, 10:00 AM - 5:30 PM' },
-        { id: 4, name: 'Bob Brown', email: 'bob@example.com', position: 'HR', schedule: 'Mon-Fri, 9:15 AM - 6:15 PM' },
-        { id: 5, name: 'Eve Williams', email: 'eve@example.com', position: 'Accountant', schedule: 'Mon-Fri, 9:45 AM - 5:45 PM' }
-    ]);
-    const apiUrl = 'http://localhost:8000/api/employees/add';
+    const { data: employees = [], error, isLoading } = useGetEmployeesQuery();
+    const [deleteEmployee] = useDeleteEmployeeMutation();
+    const [addEmployee] = useAddEmployeeMutation();
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const handleAddEmployee = async (newEmployee) => {
+    const handleDelete = async (EmployeeID) => {
         try {
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newEmployee),
-            });
+            await deleteEmployee(EmployeeID);
+        } catch (error) {
+            console.error('Error deleting employee:', error);
+        }
+    };
 
-            if (!response.ok) {
-                throw new Error('Failed to add employee');
-            }
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
 
-            const data = await response.json();
-            setEmployees([...employees, data]);
-            setShowModal(false);
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleSubmit = async (formData) => {
+        try {
+           
+            const response = await addEmployee(formData);
+            const addedEmployee = response.data;
+            console.log('Newly added employee:', addedEmployee);
+            closeModal();
         } catch (error) {
             console.error('Error adding employee:', error);
         }
     };
 
-    const handleDelete = (id) => {
-        const updatedEmployees = employees.filter(employee => employee.id !== id);
-        setEmployees(updatedEmployees);
-    };
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error.message}</div>;
 
     return (
         <div className="EmployeeList-table">
@@ -51,10 +52,8 @@ const EmployeeList = () => {
                 </div>
             </div>
             <div className="addNew">
-                <button onClick={() => setShowModal(true)}>+ New</button>
+                <button onClick={openModal}>+ New</button>
             </div>
-
-            <ModalForm isOpen={showModal} onClose={() => setShowModal(false)} onSubmit={handleAddEmployee} />
 
             <table>
                 <thead>
@@ -69,22 +68,30 @@ const EmployeeList = () => {
                 </thead>
                 <tbody>
                     {employees.map(employee => (
-                        <tr key={employee.id}>
-                            <td>{employee.id}</td>
-                            <td>{employee.name}</td>
-                            <td>{employee.email}</td>
-                            <td>{employee.position}</td>
-                            <td>{employee.schedule}</td>
+                        <tr className="details" key={employee.EmployeeID}>
+                            <td>{employee.EmployeeID}</td>
+                            <td>{`${employee.FirstName} ${employee.LastName}`}</td>
+                            <td>{employee.Email}</td>
+                            <td>{employee.PositionID}</td>
+                            <td>{employee.ScheduleID}</td>
                             <td>
                                 <button>Edit</button>
-                                <button onClick={() => handleDelete(employee.id)}>Delete</button>
+                                <button onClick={() => handleDelete(employee.EmployeeID)}>Delete</button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+
+            {isModalOpen && (
+                <ModalForm isOpen={isModalOpen} onClose={closeModal} onSubmit={handleSubmit} />
+            )}
         </div>
     );
 };
 
 export default EmployeeList;
+
+
+
+

@@ -1,21 +1,40 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const userApi = createApi({
-    reducerPath: "userApi",
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000/api/' }),
-    tagTypes: ['Users'],
-    endpoints: (builder) => ({
-      
-        
+export const employeeApi = createApi({
+    reducerPath: "employeeApi",
+    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/api/"}),
+    tagTypes: ["Employees"],
+    endpoints: (builder) =>({
+        getEmployees: builder.query({
+            query: () => "users/getAllUsers",
+            providesTags: ["Employees"]
+        }),
         loginEmployee: builder.mutation({
-            query: (user) => ({
-                url: 'auth/login',
-                method: 'POST',
-                body: user
+            query:(employee) => ({
+                url: "users/login",
+                method: "POST",
+                body: employee,
             }),
-            invalidatesTags: ['Users']
+            // invalidatesTags: ["Employees"]
+        }),
+        addEmployee: builder.mutation({
+            query: (employee) =>({
+                url:"/users/addNewEmployee",
+                method: "POST",
+                body: employee,
+            }),
+            invalidatesTags: ["Employees"],
+        }),
+        deleteEmployee: builder.mutation({
+            query:(EmployeeID) => ({
+                url:`/users/deleteEmployeeById/${EmployeeID}`,
+                method: "DELETE",
+            })
         })
+        
+
+
     })
 });
 
-export const {useLoginEmployeeMutation } = userApi;
+export const {useGetEmployeesQuery, useLoginEmployeeMutation, useAddEmployeeMutation, useDeleteEmployeeMutation} = employeeApi;

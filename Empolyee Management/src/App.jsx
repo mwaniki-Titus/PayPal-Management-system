@@ -1,4 +1,5 @@
 import './App.scss';
+import React from 'react';
 
 import MainContent from './Layout/MainContent';
 import Login from './Features/User/Login/Login';
@@ -10,7 +11,7 @@ import EmployeeDashboard from './Employee/Layout/Employee/EmployeeDashboard';
 function App() {
   return (
     <div className='mainContainer'>
-          <Routes>
+      <Routes>
           <Route path="/" element={<Login/>} />
           <Route path="/*" element={<MainContent />} />
           <Route path="/employeeDashboard/*" element={<EmployeeDashboard />} />

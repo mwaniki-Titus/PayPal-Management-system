@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ModalForm from '../../Components/Attendance/attendanceForm'
+
 import './Attendance.scss';
 
 
@@ -50,10 +50,9 @@ const Attendance = () => {
             </div>
 
             <div className="addNew">
-                <button onClick={handleAddNew}>+ New</button>
+                
             </div>
 
-            {showModal && <ModalForm handleAddAttendance={handleAddAttendance} toggleModal={toggleModal} />}
 
             <table>
                 <thead>

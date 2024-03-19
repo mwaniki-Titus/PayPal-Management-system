@@ -1,91 +1,77 @@
-
-
 .EmployeeList-table {
-    width: 100%;
-  
-    .TopMenu {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-  
-      .CurrentPage {
-        h1 {
-          margin: 0;
-          font-size: 24px;
-        }
-      }
-  
-      .Navigate {
-        button {
-          background-color: #007bff;
-          color: #fff;
-          border: none;
-          padding: 8px 16px;
-          border-radius: 5px;
-          cursor: pointer;
-  
-          &:hover {
-            background-color: #0056b3;
-          }
-        }
-      }
-    }
-  
-    .addNew {
-      margin-bottom: 20px;
-  
-      button {
-        background-color: #28a745;
-        color: #fff;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 5px;
-        cursor: pointer;
-  
-        &:hover {
-          background-color: #218838;
-        }
-      }
-    }
-  
-    table {
-      width: 100%;
-      border-collapse: collapse;
-  
-      th, td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: center;
-      }
-  
-      th {
-        background-color: #f2f2f2;
-        font-weight: bold;
-      }
-    }
-  
-    .edit-button, .delete-button {
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 5px;
-      margin: 4px;
-      cursor: pointer;
-      margin-right: 5px;
-  
-      &:hover {
-        background-color: #0056b3;
-      }
-    }
-  
-    .delete-button {
-      background-color: #dc3545;
-  
-      &:hover {
-        background-color: #c82333;
-      }
-    }
+   
+  .addNew {
+    margin-bottom: 20px;
   }
-  
+
+  .modal {
+    display: none; /* Hide modal by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black background */
+    overflow: auto;
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    position: relative;
+  }
+
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .close:hover {
+    color: #aaa;
+  }
+
+  /* Show modal when isOpen is true */
+  .modal.open {
+    display: block;
+  }
+
+  /* Style form inputs and button */
+  input[type='text'],
+  input[type='email'],
+  input[type='password'],
+  input[type='date'],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  button[type='submit'] {
+    background-color: #4caf50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+  }
+
+  button[type='submit']:hover {
+    background-color: #45a049;
+  }
+}

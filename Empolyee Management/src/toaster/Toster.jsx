@@ -1,5 +1,5 @@
 import { Toaster, toast } from 'sonner';
-
+import React from 'react';
 export const SuccessToast = (message) => {
   toast.success(message, {
     duration: 2000,
