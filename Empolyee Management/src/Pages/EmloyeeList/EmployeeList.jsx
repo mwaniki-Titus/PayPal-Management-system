@@ -72,7 +72,7 @@ const EmployeeList = () => {
                             <td>{employee.EmployeeID}</td>
                             <td>{`${employee.FirstName} ${employee.LastName}`}</td>
                             <td>{employee.Email}</td>
-                            <td>{employee.PositionID}</td>
+                            <td>{employee.PositionDescription}</td>
                             <td>{employee.ScheduleID}</td>
                             <td>
                                 <button>Edit</button>

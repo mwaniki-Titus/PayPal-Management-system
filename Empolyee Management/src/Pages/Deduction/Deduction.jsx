@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { useGetAllDeductionsQuery } from '../../Features/deduction/deductionApi'
 import './Deduction.scss';
-import Delete from '../../assets/icons8-delete-30.png';
-import Edit from '../../assets/icons8-edit-24.png';
+
 
 const Deduction = () => {
     const [showForm, setShowForm] = useState(false);
@@ -15,61 +15,11 @@ const Deduction = () => {
         NSSF: '',
         Loans: ''
     });
-    const [employees, setEmployees] = useState([
-        { 
-            id: 1,
-            name: 'John Doe', 
-            position: 'Manager', 
-            NHIF: 100, 
-            NSSF: 150, 
-            Loans: 50
-        },
-        // Other employee objects...
-    ]);
 
-    const handleEdit = (id) => {
-        setEditMode(true);
-        setEditedEmployeeId(id);
-        const employeeToEdit = employees.find(employee => employee.id === id);
-        setNewEmployee(employeeToEdit);
-        setShowForm(true);
-    };
+    // Use the useGetAllDeductionsQuery hook to fetch all deductions
+    const { data: employees, isLoading, isError } = useGetAllDeductionsQuery();
 
-    const handleDelete = (id) => {
-        const updatedEmployees = employees.filter(employee => employee.id !== id);
-        setEmployees(updatedEmployees);
-    };
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setNewEmployee({ ...newEmployee, [name]: value });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (editMode) {
-            const updatedEmployees = employees.map(employee => {
-                if (employee.id === editedEmployeeId) {
-                    return { ...newEmployee };
-                }
-                return employee;
-            });
-            setEmployees(updatedEmployees);
-        } else {
-            setEmployees([...employees, { ...newEmployee, id: employees.length + 1 }]);
-        }
-        setNewEmployee({
-            id: '',
-            name: '',
-            employeename:'',
-            NHIF: '',
-            NSSF: '',
-            Loans: ''
-        });
-        setShowForm(false);
-        setEditMode(false);
-        setEditedEmployeeId(null);
-    };
+    // Rest of your component remains the same
 
     return (
         <div className="deductions-table">
@@ -108,7 +58,7 @@ const Deduction = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {employees.map(employee => (
+                    {employees && employees.map(employee => (
                         <tr key={employee.id}>
                             <td>{employee.id}</td>
                             <td>{employee.name}</td>

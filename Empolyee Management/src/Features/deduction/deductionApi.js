@@ -1,27 +1,28 @@
-export const deductionApi=createApi({
-    reducerPath:'dedcutionApi',
-    baseQuery:fetchBaseQuery({baseUrl:`http://localhost:8000/api/`}),
-    tagTypes:[`Deductions`],
-    endpoints:(builder)=>({
-        createNewDeduction:builder.mutation({
-            query:(deduction)=>({
-                url:`deduction`,
-                method:`POST`,
-                body:deduction
-            }),
-            invalidatesTags:[`Deductions`]
-        }),
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-        getAllDeduction:builder.query({
-            query:()=>({
-                url:`deduction`,
-                method:`GET`,
-                
-            })
+export const deductionApi = createApi({
+    reducerPath: "deductionApi",
+    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/api/"}),
+    tagTypes: ["Deductions"],
+    endpoints: (builder) =>({
+        createNewDeduction: builder.mutation({
+            query: (deduction) =>({
+                url: "/deductions",
+                method: "POST",
+                body: deduction,
+            }),
+            invalidatesTags: ["Deduction"],
+        }),
+        getAllDeductions: builder.query({
+            query: () => "deductions", 
+            providesTags: ["Deduction"]
         })
     })
-})
+});
 
+export const {
+    useCreateNewDeductionMutation,
+    useGetAllDeductionsQuery
+} = deductionApi;
 
-export const {useCreateNewDeductionMutation,useGetAllDeductionQuery}=deductionApi
 

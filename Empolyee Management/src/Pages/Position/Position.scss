@@ -1,88 +1,92 @@
 
-
 .positions-table {
-  // width: 84%;
-  // margin-left: 16%;
-  
-  
-  .TopMenu {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    background-color: #ccc;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
-    .CurrentPage {
-      h1 {
-        margin: 0;
-        font-size: 24px;
-        background-color:white;
+.TopMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-      }
-    }
+.CurrentPage h1 {
+  font-size: 24px;
+  margin: 0;
+}
 
-    .Navigate {
-      h2 {
-        margin: 0;
-        font-size: 16px;
-        color: #ccc;
-        background-color: #ccc;
-        margin-right: 10px;
-      }
-    }
-  }
+.Navigate button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-  .addNew {
-    margin-bottom: 20px;
+.Navigate button:hover {
+  background-color: #0056b3;
+}
 
-    button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      margin: 4px;
-      font-size: 16px;
-      cursor: pointer;
+.addNew {
+  margin-bottom: 20px;
+}
 
-      &:hover {
-        background-color: #0056b3;
-      }
-    }
-  }
+.addNew button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-  
-      th, td {
-        border: 1px solid #ccc;
-        padding: 8px;
-      }
-  
-      th {
-        background-color: #f2f2f2;
-        font-weight: bold;
-        text-align: left;
-      }
-  
-      td {
-        text-align: center;
-      }
-    }
-    
-    .tools span {
-      display: inline-block;
-      margin-right: 5px;
-      padding: 3px 8px;
-      border: 1px solid #ccc;
-      margin: 4px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  
-    .tools span:hover {
-      background-color: #f2f2f2;
-    }
-  }
-  
+.addNew button:hover {
+  background-color: #218838;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+form input {
+  width: calc(100% - 40px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+button {
+  padding: 5px 10px;
+  margin-right: 5px;
+  background-color: #3583dc;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #c82333;
+}

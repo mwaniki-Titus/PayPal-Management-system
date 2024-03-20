@@ -4,7 +4,9 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 // import authReducer from "../features/user/authSllice";
 import { employeeApi } from '../Features/User/UserApi';
 import { cashAdvanceApi } from '../Features/cashAdvance/cashAdvanceApi';
-
+import { positionApi } from '../Features/position/PositionApi';
+import { deductionApi } from '../Features/deduction/deductionApi';
+import { overtimeApi } from '../Features/Overtime/overtimeApi';
 
 
 export const store=configureStore({
@@ -12,6 +14,9 @@ export const store=configureStore({
         // [userApi.reducerPath]:userApi.reducer,
         [employeeApi.reducerPath]:employeeApi.reducer,
         [cashAdvanceApi.reducerPath]:cashAdvanceApi.reducer,
+        [positionApi.reducerPath]:positionApi.reducer,
+        [deductionApi.reducerPath]:deductionApi.reducer,
+        [overtimeApi.reducerPath]:overtimeApi.reducer,
 
       
     },
@@ -21,6 +26,9 @@ export const store=configureStore({
         // userApi.middleware,
         employeeApi.middleware,
         cashAdvanceApi.middleware,
+        positionApi.middleware,
+        deductionApi.middleware,
+        overtimeApi.middleware,
        
         )
     }, 
