@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAddPositionMutation } from '../../Features/position/PositionApi'; 
-// import './PositionForm.scss'; 
+import './positionForm.scss'; 
 
 const PositionForm = ({ setShowForm }) => { 
     const [positionData, setPositionData] = useState({

@@ -6,7 +6,7 @@ export const positionApi = createApi({
     tagTypes: ["Position"],
     endpoints: (builder) =>({
         getPosition: builder.query({
-            query: () => "position", 
+            query: () => "position/all", 
             providesTags: ["Position"]
         }),
         addPosition: builder.mutation({

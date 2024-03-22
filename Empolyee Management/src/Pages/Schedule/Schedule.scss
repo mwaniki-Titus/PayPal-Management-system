@@ -1,89 +1,94 @@
+// Schedule.scss
 
 .schedule-table {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.TopMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.CurrentPage h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.Navigate button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.addNew button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
   width: 100%;
-  margin-top: 20px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 
-  .TopMenu {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    background-color: #ccc;
+.modal.open {
+  display: block;
+}
 
-    .CurrentPage {
-      h1 {
-        margin: 0;
-        font-size: 24px;
-        background-color:rgb(201, 194, 194);
+.modal-content {
+  background-color: #fff;
+  width: 400px;
+  max-width: 90%;
+  margin: 100px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-      }
-    }
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
 
-    .Navigate {
-      h2 {
-        margin: 0;
-        font-size: 16px;
-        color: #ccc;
-        background-color: #ccc;
-        margin-right: 10px;
-      }
-    }
-  }
+form {
+  display: flex;
+  flex-direction: column;
+}
 
-  .addNew {
-    margin-bottom: 20px;
+input {
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
 
-    button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-      &:hover {
-        background-color: #0056b3;
-      }
-    }
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-
-    th, td {
-      border: 1px solid #ccc;
-      padding: 8px;
-      text-align: center;
-    }
-
-    th {
-      background-color: #f2f2f2;
-      font-weight: bold;
-    }
-  }
-
-  .edit-button, .delete-button {
-    padding: 8px 16px;
-    margin-right: 5px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    margin: 4px;
-    border-radius: 5px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #218838;
-    }
-  }
-
-  .delete-button {
-    background-color: #dc3545;
-
-    &:hover {
-      background-color: #c82333;
-    }
-  }
+button[type="submit"]:hover {
+  background-color: #0056b3;
 }

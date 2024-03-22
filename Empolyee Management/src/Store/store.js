@@ -7,6 +7,8 @@ import { cashAdvanceApi } from '../Features/cashAdvance/cashAdvanceApi';
 import { positionApi } from '../Features/position/PositionApi';
 import { deductionApi } from '../Features/deduction/deductionApi';
 import { overtimeApi } from '../Features/Overtime/overtimeApi';
+import { scheduleApi } from '../Features/schedule/ScheduleApi';
+import { attendanceApi } from '../Features/attendance/attendanceApi';
 
 
 export const store=configureStore({
@@ -17,6 +19,9 @@ export const store=configureStore({
         [positionApi.reducerPath]:positionApi.reducer,
         [deductionApi.reducerPath]:deductionApi.reducer,
         [overtimeApi.reducerPath]:overtimeApi.reducer,
+        [scheduleApi.reducerPath]:scheduleApi.reducer,
+        [overtimeApi.reducerPath]:overtimeApi.reducer,
+        [attendanceApi.reducerPath]:attendanceApi.reducer,
 
       
     },
@@ -29,7 +34,10 @@ export const store=configureStore({
         positionApi.middleware,
         deductionApi.middleware,
         overtimeApi.middleware,
-       
+        scheduleApi.middleware,
+        overtimeApi.middleware,
+        attendanceApi.middleware,
+
         )
     }, 
 )

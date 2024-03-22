@@ -1,70 +1,45 @@
-import React, { useState } from 'react';
-import './Schedule.scss'; 
-import DeleteIcon from '../../assets/icons8-delete-30.png';
-import EditIcon from '../../assets/icons8-edit-24.png';
+import React, { useState, useEffect } from 'react';
+import './Schedule.scss';
+import { useGetAllScheduleQuery, useAddScheduleMutation, useDeleteScheduleMutation, useGetEmployeesInScheduleQuery } from '../../Features/schedule/ScheduleApi';
+import ScheduleForm from './scheduleForm';
+import EmployeeDetailsForm from './employeeSchedule';
+
 
 const ScheduleTable = () => {
+    const { data: scheduleData, error, isLoading } = useGetAllScheduleQuery();
+    const [schedule, setSchedule] = useState([]);
     const [showForm, setShowForm] = useState(false);
-    const [editMode, setEditMode] = useState(false);
-    const [editedScheduleId, setEditedScheduleId] = useState(null);
-    const [newSchedule, setNewSchedule] = useState({
-        id: '',
-        employeeName: '',
-        startTime: '',
-        endTime: '',
-        date: ''
-    });
-    const [schedule, setSchedule] = useState([
-        { id: 1, employeeName: 'John Doe', startTime: '09:00', endTime: '17:00', date: '2024-03-12',},
-        { id: 2, employeeName: 'Jane Smith', startTime: '10:00', endTime: '18:00', date: '2024-03-12', },
-        { id: 3, employeeName: 'Alice Johnson', startTime: '08:30', endTime: '16:30', date: '2024-03-13',  },
-        { id: 4, employeeName: 'Bob Brown', startTime: '09:30', endTime: '17:30', date: '2024-03-13',  },
-        { id: 5, employeeName: 'Eve Williams', startTime: '09:00', endTime: '17:00', date: '2024-03-14',  }
-    ]);
+    const [deleteScheduleMutation] = useDeleteScheduleMutation(); 
+    const [selectedSchedule, setSelectedSchedule] = useState(null); // State to store the selected schedule
+    const { data: employeesData, error: employeesError, isLoading: employeesLoading } = useGetEmployeesInScheduleQuery(selectedSchedule); // Fetch employees for the selected schedule
+
+    useEffect(() => {
+        if (scheduleData) {
+            setSchedule(scheduleData);
+        }
+    }, [scheduleData]);
 
     const handleEdit = (id) => {
-        setEditMode(true);
-        setEditedScheduleId(id);
-        const scheduleToEdit = schedule.find(item => item.id === id);
-        setNewSchedule(scheduleToEdit);
-        setShowForm(true);
+        setSelectedSchedule(id); // Set the selected schedule ID
     };
 
-    const handleDelete = (id) => {
-        const updatedSchedule = schedule.filter(item => item.id !== id);
-        setSchedule(updatedSchedule);
-    };
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setNewSchedule({ ...newSchedule, [name]: value });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (editMode) {
-            const updatedSchedule = schedule.map(item => {
-                if (item.id === editedScheduleId) {
-                    return { ...newSchedule };
-                }
-                return item;
-            });
-            setSchedule(updatedSchedule);
-        } else {
-            setSchedule([...schedule, { ...newSchedule, id: schedule.length + 1 }]);
+    const handleDelete = async (id) => {
+        try {
+            await deleteScheduleMutation(id);
+            // Update the local state after deletion
+            setSchedule(prevSchedule => prevSchedule.filter(schedule => schedule.ScheduleID !== id));
+        } catch (error) {
+            console.error('Error deleting schedule:', error);
+            // Handle error
         }
-        setNewSchedule({
-            id: '',
-            employeeName: '',
-            startTime: '',
-            endTime: '',
-            date: '',
-            // overtime:''
-        });
-        setShowForm(false);
-        setEditMode(false);
-        setEditedScheduleId(null);
     };
+
+    const handleSubmit = async (formData) => {
+        // Add logic for form submission
+    };
+
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error.message}</div>;
 
     return (
         <div className="schedule-table">
@@ -80,43 +55,50 @@ const ScheduleTable = () => {
                 <button onClick={() => setShowForm(true)}>+ New</button>
             </div>
 
-            {showForm && (
-                <form onSubmit={handleSubmit}>
-                    <input type="text" name="employeeName" placeholder="Employee Name" value={newSchedule.employeeName} onChange={handleInputChange} />
-                    <input type="time" name="startTime" placeholder="Start Time" value={newSchedule.startTime} onChange={handleInputChange} />
-                    <input type="time" name="endTime" placeholder="End Time" value={newSchedule.endTime} onChange={handleInputChange} />
-                    <input type="date" name="date" placeholder="Date" value={newSchedule.date} onChange={handleInputChange} />
-                    <button type="submit">{editMode ? 'Update' : 'Add'}</button>
-                </form>
-            )}
+            <ScheduleForm
+                isOpen={showForm}
+                onClose={() => setShowForm(false)}
+                onSubmit={handleSubmit}
+            />
 
             <table>
                 <thead>
                     <tr>
-                        <th>Employee Name</th>
+                        <th>ScheduleID</th>
                         <th>Start Time</th>
                         <th>End Time</th>
-                        <th>Date</th>
-                        {/* <th>Overtime</th> */}
+                        <th>ScheduleName</th>
                         <th>Tools</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {schedule.map(item => (
-                        <tr key={item.id}>
-                            <td>{item.employeeName}</td>
-                            <td>{item.startTime}</td>
-                            <td>{item.endTime}</td>
-                            <td>{item.date}</td>
-                            {/* <td>{item.overtime}</td> */}
+                    {schedule.map(schedule => (
+                        <tr key={schedule.ScheduleID}>
+                            <td>{schedule.ScheduleID}</td>
+                            <td>{schedule.InTime}</td>
+                            <td>{schedule.OutTime}</td>
+                            <td>{schedule.ScheduleName}</td>
                             <td>
-                                <button onClick={() => handleEdit(item.id)}>Edit</button>
-                                <button onClick={() => handleDelete(item.id)}>Delete</button>
+                                <button onClick={() => handleEdit(schedule.ScheduleID)}>View</button>
+                                <button onClick={() => handleEdit(schedule.ScheduleID)}>Edit</button>
+                                <button onClick={() => handleDelete(schedule.ScheduleID)}>Delete</button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+
+            {selectedSchedule && (
+                <div>
+                    {employeesLoading ? (
+                        <div>Loading employees...</div>
+                    ) : employeesError ? (
+                        <div>Error: {employeesError.message}</div>
+                    ) : (
+                        <EmployeeDetailsForm employees={employeesData} />
+                    )}
+                </div>
+            )}
         </div>
     );
 };

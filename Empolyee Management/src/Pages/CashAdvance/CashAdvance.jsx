@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { useGetAllCashAdvancesQuery } from '../../Features/cashAdvance/cashAdvanceApi'
 import './CashAdvance.scss'; 
-import DeleteIcon from '../../assets/icons8-delete-30.png';
-import EditIcon from '../../assets/icons8-edit-24.png';
+
 
 const CashAdvance = () => {
+    const { data: cashAdvances, error, isLoading } = useGetAllCashAdvancesQuery();
     const [showForm, setShowForm] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [editedCashAdvanceId, setEditedCashAdvanceId] = useState(null);
@@ -13,13 +14,6 @@ const CashAdvance = () => {
         amount: '',
         date: ''
     });
-    const [cashAdvances, setCashAdvances] = useState([
-        { id: 1, employeeName: 'John Doe', amount: 500, date: '2024-03-12' },
-        { id: 2, employeeName: 'Jane Smith', amount: 700, date: '2024-03-12' },
-        { id: 3, employeeName: 'Alice Johnson', amount: 600, date: '2024-03-12' },
-        { id: 4, employeeName: 'Bob Brown', amount: 400, date: '2024-03-12' },
-        { id: 5, employeeName: 'Eve Williams', amount: 800, date: '2024-03-12' }
-    ]);
 
     const handleEdit = (id) => {
         setEditMode(true);
@@ -30,8 +24,7 @@ const CashAdvance = () => {
     };
 
     const handleDelete = (id) => {
-        const updatedCashAdvances = cashAdvances.filter(cashAdvance => cashAdvance.id !== id);
-        setCashAdvances(updatedCashAdvances);
+        // Handle delete logic here
     };
 
     const handleInputChange = (e) => {
@@ -41,27 +34,20 @@ const CashAdvance = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (editMode) {
-            const updatedCashAdvances = cashAdvances.map(cashAdvance => {
-                if (cashAdvance.id === editedCashAdvanceId) {
-                    return { ...newCashAdvance };
-                }
-                return cashAdvance;
-            });
-            setCashAdvances(updatedCashAdvances);
-        } else {
-            setCashAdvances([...cashAdvances, { ...newCashAdvance, id: cashAdvances.length + 1 }]);
-        }
-        setNewCashAdvance({
-            id: '',
-            employeeName: '',
-            amount: '',
-            date: ''
-        });
-        setShowForm(false);
-        setEditMode(false);
-        setEditedCashAdvanceId(null);
+        // Handle form submission here
     };
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
+    if (!cashAdvances) {
+        return null; // Or render something else if needed
+    }
 
     return (
         <div className="cash-advance-table">
@@ -114,3 +100,4 @@ const CashAdvance = () => {
 };
 
 export default CashAdvance;
+
