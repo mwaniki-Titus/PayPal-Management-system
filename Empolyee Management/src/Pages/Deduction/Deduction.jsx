@@ -19,7 +19,7 @@ const Deduction = () => {
     // Use the useGetAllDeductionsQuery hook to fetch all deductions
     const { data: employees, isLoading, isError } = useGetAllDeductionsQuery();
 
-    // Rest of your component remains the same
+
 
     return (
         <div className="deductions-table">

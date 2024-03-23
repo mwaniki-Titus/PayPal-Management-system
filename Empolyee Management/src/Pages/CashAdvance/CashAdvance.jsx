@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useGetAllCashAdvancesQuery } from '../../Features/cashAdvance/cashAdvanceApi'
-import './CashAdvance.scss'; 
-
+import { useGetAllCashAdvancesQuery } from '../../Features/cashAdvance/cashAdvanceApi';
+import CashAdvanceForm from './newCashAdvanvceModalForm';
+import './newCashAdvanceModalForm.scss';
 
 const CashAdvance = () => {
     const { data: cashAdvances, error, isLoading } = useGetAllCashAdvancesQuery();
@@ -9,22 +9,24 @@ const CashAdvance = () => {
     const [editMode, setEditMode] = useState(false);
     const [editedCashAdvanceId, setEditedCashAdvanceId] = useState(null);
     const [newCashAdvance, setNewCashAdvance] = useState({
-        id: '',
-        employeeName: '',
-        amount: '',
-        date: ''
+        CashAdvanceID: '',
+        EmployeeID: '',
+        DateOfAdvance: '',
+        Amount: '',
+        FirstName: '',
+        LastName: ''
     });
 
     const handleEdit = (id) => {
         setEditMode(true);
         setEditedCashAdvanceId(id);
-        const cashAdvanceToEdit = cashAdvances.find(cashAdvance => cashAdvance.id === id);
+        const cashAdvanceToEdit = cashAdvances.find(cashAdvance => cashAdvance.CashAdvanceID === id);
         setNewCashAdvance(cashAdvanceToEdit);
         setShowForm(true);
     };
 
     const handleDelete = (id) => {
-        // Handle delete logic here
+        // Implement delete logic here
     };
 
     const handleInputChange = (e) => {
@@ -34,7 +36,7 @@ const CashAdvance = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission here
+        // Implement form submission logic here
     };
 
     if (isLoading) {
@@ -46,7 +48,7 @@ const CashAdvance = () => {
     }
 
     if (!cashAdvances) {
-        return null; // Or render something else if needed
+        return null;
     }
 
     return (
@@ -64,32 +66,41 @@ const CashAdvance = () => {
             </div>
 
             {showForm && (
-                <form onSubmit={handleSubmit}>
-                    <input type="text" name="employeeName" placeholder="Employee Name" value={newCashAdvance.employeeName} onChange={handleInputChange} />
-                    <input type="number" name="amount" placeholder="Amount" value={newCashAdvance.amount} onChange={handleInputChange} />
-                    <input type="date" name="date" placeholder="Date" value={newCashAdvance.date} onChange={handleInputChange} />
-                    <button type="submit">{editMode ? 'Update' : 'Add'}</button>
-                </form>
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={() => setShowForm(false)}>&times;</span>
+                        <CashAdvanceForm
+                            isOpen={showForm}
+                            onClose={() => setShowForm(false)}
+                            onSubmit={handleSubmit}
+                            initialCashAdvance={newCashAdvance}
+                        />
+                    </div>
+                </div>
             )}
 
             <table>
                 <thead>
                     <tr>
+                        <th>Cash Advance ID</th>
+                        <th>Employee ID</th>
                         <th>Employee Name</th>
+                        <th>Date of Advance</th>
                         <th>Amount</th>
-                        <th>Date</th>
                         <th>Tools</th>
                     </tr>
                 </thead>
                 <tbody>
                     {cashAdvances.map(cashAdvance => (
-                        <tr key={cashAdvance.id}>
-                            <td>{cashAdvance.employeeName}</td>
-                            <td>{cashAdvance.amount}</td>
-                            <td>{cashAdvance.date}</td>
+                        <tr className="details" key={cashAdvance.CashAdvanceID}>
+                            <td>{cashAdvance.CashAdvanceID}</td>
+                            <td>{cashAdvance.EmployeeID}</td>
+                            <td>{cashAdvance.FirstName} {cashAdvance.LastName}</td>
+                            <td>{cashAdvance.DateOfAdvance}</td>
+                            <td>{cashAdvance.Amount}</td>
                             <td>
-                                <button onClick={() => handleEdit(cashAdvance.id)}>Edit</button>
-                                <button onClick={() => handleDelete(cashAdvance.id)}>Delete</button>
+                                <button onClick={() => handleEdit(cashAdvance.CashAdvanceID)}>Edit</button>
+                                <button onClick={() => handleDelete(cashAdvance.CashAdvanceID)}>Delete</button>
                             </td>
                         </tr>
                     ))}
@@ -100,4 +111,3 @@ const CashAdvance = () => {
 };
 
 export default CashAdvance;
-

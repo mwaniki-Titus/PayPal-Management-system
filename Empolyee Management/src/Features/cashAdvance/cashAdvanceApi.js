@@ -7,20 +7,20 @@ export const cashAdvanceApi = createApi({
     endpoints: (builder) =>({
         createCashAdvances: builder.mutation({
             query: (cashAdvance) =>({
-                url: "/cashadvances/add",
+                url: "/create/cashAdvance",
                 method: "POST",
                 body: cashAdvance,
             }),
             invalidatesTags: ["CashAdvances"],
         }),
         getAllCashAdvances: builder.query({
-            query: () => "cashadvances", 
+            query: () => "/getAll/cashAdvance", 
             providesTags: ["CashAdvances"]
         })
     })
 });
 
 export const {
-    useCreateCashAdvanceMutation,
+    useCreateCashAdvancesMutation,
     useGetAllCashAdvancesQuery
 } = cashAdvanceApi;

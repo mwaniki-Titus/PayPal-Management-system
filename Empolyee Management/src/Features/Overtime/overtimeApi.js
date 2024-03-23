@@ -7,7 +7,7 @@ export const overtimeApi = createApi({
     endpoints: (builder) =>({
         createNewOvertime: builder.mutation({
             query: (overtime) =>({
-                url: "/overtime",
+                url: "/overtime/add",
                 method: "POST",
                 body: overtime,
             }),
@@ -16,12 +16,17 @@ export const overtimeApi = createApi({
         getAllOvertimeRecord: builder.query({
             query: () => "overtime/getall", 
             providesTags: ["Overtime"]
+        }),
+        getOvertimeByID: builder.query({
+            query: (overtimeID) => `overtime/byid/${overtimeID}`, 
+            providesTags: (result, error, overtimeID) => [{ type: "Overtime", id: overtimeID }]
         })
     })
 });
 
 export const {
     useCreateNewOvertimeMutation,
-    useGetAllOvertimeRecordQuery
+    useGetAllOvertimeRecordQuery,
+    usegetOvertimeByIDQuery
 } = overtimeApi;
 

@@ -1,18 +1,17 @@
 import React from 'react';
 
 const EmployeeDetailsForm = ({ employees }) => {
-    // Check if employees is undefined or null
+    console.log("Employees data:", employees); 
+
     if (!employees) {
         return <div>Loading employees...</div>;
     }
 
-    // Check if employees is not an array
     if (!Array.isArray(employees)) {
         console.error("Invalid employees data:", employees);
         return <div>Unable to display employee data due to an unexpected error.</div>;
     }
 
-    // Check if employees array is empty
     if (employees.length === 0) {
         return <div>No employees data available.</div>;
     }
@@ -32,8 +31,8 @@ const EmployeeDetailsForm = ({ employees }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {employees.map(employee => (
-                        <tr key={employee.EmployeeID}>
+                    {employees&& employees.map((employee) => (
+                        <tr className="details" key={employee.EmployeeID}>
                             <td>{employee.EmployeeID}</td>
                             <td>{employee.FirstName}</td>
                             <td>{employee.LastName}</td>
