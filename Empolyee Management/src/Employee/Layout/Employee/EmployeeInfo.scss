@@ -1,6 +1,7 @@
 .EmployeeDashboard {
  width: 100%;
-  background-color: #f2f2f2;
+  background-color: #e0e0e0;
+  background-image: url(https://emeritus.org/in/wp-content/uploads/sites/3/2022/03/What-is-Financial-Management.jpg.optimal.jpg);
   padding: 20px;
   border-radius: 10px;
 overflow: scroll;
@@ -41,7 +42,7 @@ overflow: scroll;
 
       .employeeProfile {
        
-          width: 300px;
+          width: 500px;
           padding: 20px;
           background-color: #fff;
           border-radius: 10px;
@@ -59,7 +60,7 @@ overflow: scroll;
           background-color: #fff;
           border-radius: 10px;
           align-items: center;
-          width: 300px;
+          width: 500px;
 
           h3 {
               font-size: 18px;
@@ -74,10 +75,11 @@ overflow: scroll;
       display: flex;
       justify-content: space-between;
       margin-top: 20px;
+      width: 100%;
 
       .Attend, .payroll {
         
-          flex-basis: 48%;
+          flex-basis: 100%;
           background-color: #fff;
 
           .Attendtable {

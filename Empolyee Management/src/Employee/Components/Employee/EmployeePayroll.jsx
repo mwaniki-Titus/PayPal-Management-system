@@ -4,10 +4,7 @@ import './EmployeePayroll.scss';
 const EmployeePayroll = () => {
     const payroll = [
         { grossPay: 3000, deductions: 500, netPay: 2500, payrollDate: '2024-03-12' },
-        // { grossPay: 3500, deductions: 600, netPay: 2900, payrollDate: '2024-03-12' },
-        // { grossPay: 3200, deductions: 550, netPay: 2650, payrollDate: '2024-03-12' },
-        // { grossPay: 2800, deductions: 480, netPay: 2320, payrollDate: '2024-03-12' },
-        // { grossPay: 3100, deductions: 520, netPay: 2580, payrollDate: '2024-03-12' }
+     
     ];
 
    return (

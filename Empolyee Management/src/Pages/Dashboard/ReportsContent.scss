@@ -9,25 +9,25 @@
   }
   
   .graph-container canvas {
-    width: 80%; /* Adjust width as needed */
-    max-width: 600px; /* Example maximum width */
+    width: 80%;
+    max-width: 600px; 
   }
   
   .year-buttons {
-    margin-top: 10px; /* Adjust margin as needed */
+    margin-top: 10px; 
   }
   
   .year-buttons button {
-    margin-right: 10px; /* Adjust margin between buttons */
-    padding: 5px 10px; /* Adjust padding as needed */
-    background-color: #007bff; /* Example button background color */
-    color: #fff; /* Example button text color */
+    margin-right: 10px;
+    padding: 5px 10px; 
+    background-color: #007bff; 
+    color: #fff; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
   }
   
   .year-buttons button:hover {
-    background-color: #0056b3; /* Example button background color on hover */
+    background-color: #0056b3; 
   }
   

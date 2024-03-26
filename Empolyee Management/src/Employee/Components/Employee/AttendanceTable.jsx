@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './AttendanceTable.scss';
 import { useGetAttendanceQuery } from '../../../Features/attendance/attendanceApi'; 
-const AttendanceTable = ({ employeeId }) => {
+
+const AttendanceTable = ({ employeeId, timeIn, timeOut }) => {
     const [attendance, setAttendance] = useState([]);
+    const [duration, setDuration] = useState('');
+
+    // Fetch attendance data
     const { data, isLoading, isError } = useGetAttendanceQuery(employeeId);
 
     useEffect(() => {
@@ -10,6 +14,18 @@ const AttendanceTable = ({ employeeId }) => {
             setAttendance(data);
         }
     }, [data]);
+
+    // Calculate duration
+    useEffect(() => {
+        if (timeIn && timeOut) {
+            const startTime = new Date("1970-01-01T" + timeIn + ":00Z");
+            const endTime = new Date("1970-01-01T" + timeOut + ":00Z");
+            const diff = endTime - startTime;
+            const hours = Math.floor(diff / 3600000);
+            const minutes = Math.floor((diff % 3600000) / 60000);
+            setDuration(`${hours} hours ${minutes} minutes`);
+        }
+    }, [timeIn, timeOut]);
 
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error fetching data</div>;
@@ -34,6 +50,7 @@ const AttendanceTable = ({ employeeId }) => {
                     ))}
                 </tbody>
             </table>
+            {duration && <p>Duration: {duration}</p>}
         </div>
     );
 };

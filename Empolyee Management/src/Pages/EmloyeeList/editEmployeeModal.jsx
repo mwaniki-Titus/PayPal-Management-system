@@ -44,8 +44,7 @@ const EditEmployeeModal = ({ isOpen, onClose, employee, onUpdate }) => {
                     <label htmlFor="bio">Bio:</label>
                     <textarea id="bio" name="Bio" value={updatedEmployee.Bio} onChange={handleChange} />
 
-                    <button type="submit" disabled={isUpdating}>Update</button>
-                    <button onClick={onClose} disabled={isUpdating}>Cancel</button>
+e                    <button onClick={onClose} disabled={isUpdating}>Cancel</button>
                 </form>
             </div>
         </div>
