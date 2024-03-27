@@ -46,17 +46,17 @@ const Employee = ({ employeeId }) => {
                 <div className='timecheck'>
                     <h3>TimeIN/TimeOut</h3>
                     <TimeTable />
-                    <div className='payroll'>
-                        <h3>Payroll</h3>
-                        <EmployeePayroll employeeID={employee.EmployeeID} />
+                    <div className='Attendtable'>
+                        <h3>Attendance</h3>
+                        <AttendanceTable />
                     </div>
                 </div>
             </div>
             <div className='employeebottom'>
                 <div className='Attend'>
-                    <div className='Attendtable'>
-                        <h3>Attendance</h3>
-                        <AttendanceTable />
+                    <div className='payroll'>
+                        <h3>Payroll</h3>
+                        <EmployeePayroll employeeID={employee.EmployeeID} />
                     </div>
                 </div>
             </div>

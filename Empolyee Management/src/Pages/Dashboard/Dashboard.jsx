@@ -10,6 +10,7 @@ const Dashboard = () => {
             <div className='allReports'>
                 <div className='totalNumber'>
                     <h1>Total Employees</h1>
+                    <h1>4</h1>
                 </div>
                 <div className='total percentage'>
                     <h1>Percentage</h1>

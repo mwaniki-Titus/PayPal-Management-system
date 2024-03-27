@@ -4,6 +4,10 @@ import './viewPayroll';
 const PayrollDetailsModal = ({ isOpen, onClose, payroll }) => {
     if (!isOpen || !payroll) return null;
 
+    const handlePrint = () => {
+        window.print();
+    };
+
     return (
         <div className="modal">
             <div className="modal-content">
@@ -34,6 +38,7 @@ const PayrollDetailsModal = ({ isOpen, onClose, payroll }) => {
                     <span>{payroll.PayrollDate}</span>
                 </div>
                 {/* Add more details here as needed */}
+                <button onClick={handlePrint}>Print</button>
             </div>
         </div>
     );

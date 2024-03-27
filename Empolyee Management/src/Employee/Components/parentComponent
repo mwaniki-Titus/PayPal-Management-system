@@ -1,0 +1,35 @@
+import React, { useState } from 'react';
+import TimeTable from './TimeTable';
+import AttendanceTable from './AttendanceTable';
+
+const ParentComponent = () => {
+    const [timeIn, setTimeIn] = useState('');
+    const [timeOut, setTimeOut] = useState('');
+
+    const handleTimeInChange = (newTimeIn) => {
+        setTimeIn(newTimeIn);
+    };
+
+    const handleTimeOutChange = (newTimeOut) => {
+        setTimeOut(newTimeOut);
+    };
+
+    const handleSubmit = () => {
+        // Handle form submission if needed
+    };
+
+    return (
+        <div>
+            <h2>Time Tracking</h2>
+            <TimeTable
+                onTimeInChange={handleTimeInChange}
+                onTimeOutChange={handleTimeOutChange}
+                onSubmit={handleSubmit}
+            />
+            {/* Pass timeIn and timeOut to the AttendanceTable */}
+            <AttendanceTable timeIn={timeIn} timeOut={timeOut} />
+        </div>
+    );
+};
+
+export default ParentComponent;

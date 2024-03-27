@@ -81,9 +81,9 @@ const PayrollTable = () => {
                     {payroll.map(payroll => (
                         <tr key={payroll.PayrollID}>
                             <td>{`${payroll.FirstName} ${payroll.LastName}`}</td>
-                            <td>${payroll.GrossPay}</td>
-                            <td>${payroll.TotalDeductions}</td>
-                            <td>${payroll.NetPay}</td>
+                            <td>{payroll.GrossPay}</td>
+                            <td>{payroll.TotalDeductions}</td>
+                            <td>{payroll.NetPay}</td>
                             <td>{payroll.PayrollDate}</td>
                             <td>
                                 <button onClick={() => handleViewDetails(payroll)}>View</button>

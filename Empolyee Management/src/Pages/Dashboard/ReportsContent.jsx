@@ -3,10 +3,10 @@ import Chart from 'chart.js/auto';
 import './ReportsContent.scss'
 
 const GraphComponent = () => {
-  const [selectedYear, setSelectedYear] = useState('2022');
+  const [selectedYear, setSelectedYear] = useState('2024');
   const data = {
-    '2022': [65, 59, 80, 81, 56, 55],
-    '2021': [50, 45, 60, 70, 80, 90],
+    '2024': [5, 20, 0, 0 ,0, 0, ],
+    '2023': [50, 45, 60, 70, 80, 90],
   };
 
   const renderChart = () => {
@@ -51,8 +51,8 @@ const GraphComponent = () => {
     <div>
       <canvas id="myChart"></canvas>
       <div>
-        <button onClick={() => handleYearChange('2022')}>2022</button>
-        <button onClick={() => handleYearChange('2021')}>2021</button>
+        <button onClick={() => handleYearChange('2022')}>2024</button>
+        <button onClick={() => handleYearChange('2021')}>2023</button>
        
       </div>
     </div>

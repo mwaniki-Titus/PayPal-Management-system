@@ -37,7 +37,7 @@ const Attendance = () => {
           <tr>
             <th>Employee ID</th>
             <th>Employee Name</th>
-            <th>Position</th>
+            {/* <th>Position</th> */}
             <th>Time In</th>
             <th>Time Out</th>
             {/* <th>Overtime</th> */}
@@ -48,8 +48,8 @@ const Attendance = () => {
           {attendances.map(attendance => (
             <tr key={attendance.AttendanceID}>
               <td>{attendance.AttendanceID}</td>
-              <td>{attendance.FirstName}</td>
-              <td>{attendance.PositionID}</td>
+              <td>{attendance.FirstName} {attendance.LastName}</td>
+              {/* <td>{attendance.PositionID}</td> */}
               <td>{attendance.TimeIn}</td>
               <td>{attendance.TimeOut}</td>
               {/* <td>{attendance.overTime}</td> */}

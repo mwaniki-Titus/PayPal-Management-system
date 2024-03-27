@@ -18,8 +18,8 @@ const AttendanceTable = ({ employeeId, timeIn, timeOut }) => {
     // Calculate duration
     useEffect(() => {
         if (timeIn && timeOut) {
-            const startTime = new Date("1970-01-01T" + timeIn + ":00Z");
-            const endTime = new Date("1970-01-01T" + timeOut + ":00Z");
+            const startTime = new Date("2024-01-01T" + timeIn + ":00Z");
+            const endTime = new Date("2024-01-01T" + timeOut + ":00Z");
             const diff = endTime - startTime;
             const hours = Math.floor(diff / 3600000);
             const minutes = Math.floor((diff % 3600000) / 60000);
