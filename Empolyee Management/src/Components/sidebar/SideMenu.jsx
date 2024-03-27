@@ -18,12 +18,12 @@ function SideMenu() {
   };
 
   const items = [
-    // { type: 'heading', name: 'Reports' },
-    // {
-    //   name: 'Dashboard',
-    //   icon: dashboardIcon,
-    //   path: '/dashboard',
-    // },
+    { type: 'heading', name: 'Reports' },
+    {
+      name: 'Dashboard',
+      icon: dashboardIcon,
+      path: '/dashboard',
+    },
     { type: 'heading', name: 'Manage' },
     {
       name: 'Attendance',
@@ -55,11 +55,11 @@ function SideMenu() {
       icon: positionIcon,
       path: '/position',
     },
-    {
-      name: 'Deductions',
-      icon: deductionsIcon,
-      path: '/deductions',
-    },
+    // {
+    //   name: 'Deductions',
+    //   icon: deductionsIcon,
+    //   path: '/deductions',
+    // },
     { type: 'heading', name: 'Payments' },
     {
       name: 'Payroll',
@@ -104,7 +104,10 @@ function SideMenu() {
                 {item.isOpen && (
                   <div className="submenu">
                     {item.subItems.map((subItem, subIndex) => (
-                      <NavLink to={subItem.path} key={subIndex} className="submenu-item"> 
+                         <NavLink style={{textDecorationLine:"none"}}
+                         key={subIndex}
+                        
+                          to={subItem.path} className="submenu-item"> 
                         <p>{subItem.name}</p>
                       </NavLink>
                     ))}
@@ -114,7 +117,9 @@ function SideMenu() {
             );
           } else {
             return (
-              <NavLink to={item.path} key={index} className="menu-item"> 
+              <NavLink style={{textDecorationLine:"none"}}
+              key={item.path}
+              to={item.path}className="menu-item"> 
                 <img src={item.icon} alt={item.name} />
                 <p>{item.name}</p>
               </NavLink>

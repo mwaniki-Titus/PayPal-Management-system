@@ -3,11 +3,15 @@ import './EmployeeInfo.scss';
 import EmployeePayroll from '../../Components/Employee/EmployeePayroll';
 import AttendanceTable from '../../Components/Employee/AttendanceTable';
 import TimeTable from '../../Components/Employee/TimeTable';
-import { useGetEmployeebyIDQuery} from '../../../Features/User/UserApi';
+import { useGetEmployeebyIDQuery } from '../../../Features/User/UserApi';
 
 const Employee = ({ employeeId }) => {
-    const { data: employee, isLoading, error } = useGetEmployeebyIDQuery(employeeId);
+    
+    const employeeDetails = JSON.parse(localStorage.getItem('employeeDetails'));
+    const employeeID = employeeDetails ? employeeDetails.EmployeeID : null;
 
+    const { data: employee, isLoading, error } = useGetEmployeebyIDQuery(employeeID);
+   
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
 
@@ -16,13 +20,13 @@ const Employee = ({ employeeId }) => {
             <div className='TopDashboard'>
                 <div className='allReports'>
                     <div className='totalNumber'>
-                        <h1>my page</h1>
+                        <h1>My Page</h1>
                     </div>
                     <div className='total percentage'>
                         <h1>Percentage</h1>
                     </div>
-                    <div className='ontime'>On time</div>
-                    <div className='late'>late today</div>
+                    <div className='ontime'>On Time</div>
+                    <div className='late'>Late Today</div>
                 </div>
             </div>
 
@@ -31,27 +35,22 @@ const Employee = ({ employeeId }) => {
                     <div>
                         <img src={employee.PhotoURL} alt="Employee Avatar" />
                     </div>
-                    <div>Name: {employee.FirstName} {employee.LastName}</div>
-                    <div>Email: {employee.Email}</div>
-                    <div>Contact: {employee.Contact}</div>
-                    <div>Location: {employee.Location}</div>
-                    <div>Gender: {employee.Gender}</div>
-                    <div>Position: {employee.Position}</div>
-                    <div>Birth Date: {employee.BirthDate}</div>
-                    <div>Bank Name: {employee.BankName}</div>
-                    <div>Bank Branch: {employee.BankBranch}</div>
-                    <div>Account Number: {employee.AccountNumber}</div>
-                    <div>Bio: {employee.Bio}</div>
+                    <div>Photo</div>
+                    <div>Name: {employee[0].FirstName} {employee[0].LastName}</div>
+                    <div>Email: {employee[0].Email}</div>
+                    <div>Contact: {employee[0].Contact}</div>
+                    <div>Location: {employee[0].Location}</div>
+                    <div>Position: {employee[0].Gender}</div>
+                    <div>Bio: {employee[0].Bio}</div>
                 </div>
                 <div className='timecheck'>
                     <h3>TimeIN/TimeOut</h3>
                     <TimeTable />
                     <div className='payroll'>
                         <h3>Payroll</h3>
-                        <EmployeePayroll />
+                        <EmployeePayroll employeeID={employee.EmployeeID} />
                     </div>
                 </div>
-
             </div>
             <div className='employeebottom'>
                 <div className='Attend'>
@@ -62,7 +61,7 @@ const Employee = ({ employeeId }) => {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default Employee;

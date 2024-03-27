@@ -44,11 +44,19 @@ const PayrollTable = () => {
 
     return (
         <div className="payroll-table">
-            <div className="addNew">
-                <button onClick={() => setShowAddForm(true)}>+ New</button>
+            <div className="modal-wrapper">
+                <button className="open-modal-button" onClick={() => setShowAddForm(true)}>+ New</button>
+                <br />
+                <br />
+                {showAddForm && (
+                    <div className="modal">
+                        <div className="modal-content">
+                            <span className="close-modal" onClick={() => setShowAddForm(false)}>×</span>
+                            <AddPayrollForm onCancel={() => setShowAddForm(false)} />
+                        </div>
+                    </div>
+                )}
             </div>
-
-            {showAddForm && <AddPayrollForm onCancel={() => setShowAddForm(false)} />}
 
             {showPayrollDetailsModal && (
                 <PayrollDetailsModal

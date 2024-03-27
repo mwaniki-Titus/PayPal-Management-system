@@ -1,77 +1,47 @@
-// Payroll.scss
+.modal-wrapper {
+    position: relative;
+}
 
-.payroll-table {
-  
-  .TopMenu {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    background-color: #ccc;
+.open-modal-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+}
 
-    .CurrentPage {
-      h1 {
-        margin: 0;
-        font-size: 24px;
-        background-color:rgb(197, 192, 192);
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
 
-      }
-    }
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+}
 
-    .Navigate {
-      h2 {
-        margin: 0;
-        font-size: 16px;
-        color: #ccc;
-        background-color: #ccc;
-        margin-right: 10px;
-      }
-    }
-  }
-
-  .addNew {
-    margin-bottom: 20px;
-
-    button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      margin: 4px;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #0056b3;
-      }
-    }
-  }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-  
-      th, td {
-        border: 1px solid #ccc;
-        padding: 8px;
-      }
-  
-      th {
-        background-color: #f2f2f2;
-        font-weight: bold;
-        text-align: left;
-      }
-  
-      td {
-        text-align: center;
-      }
-  
-      .icon {
-        width: 20px; 
-        margin-right: 5px;
-        cursor: pointer;
-      }
-    }
-  }
-  
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}

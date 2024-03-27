@@ -1,14 +1,24 @@
-import React from 'react';
-import './EmployeePayroll.scss'; 
+import React, { useEffect } from 'react';
+import './EmployeePayroll.scss';
+import { useGetPayrollByEmpIDQuery } from '../../../Features/payroll/PayrollApi';
 
 const EmployeePayroll = () => {
-    const payroll = [
-        { grossPay: 3000, deductions: 500, netPay: 2500, payrollDate: '2024-03-12' },
-     
-    ];
+    
+    const employeeDetails = JSON.parse(localStorage.getItem('employeeDetails'));
+    const employeeID = employeeDetails ? employeeDetails.EmployeeID : null;
 
-   return (
-       <div className="employee-payroll">
+    const { data, isLoading, isError, refetch } = useGetPayrollByEmpIDQuery(employeeID); 
+    // console.log(data)
+
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>Error fetching payroll data: {isError.message}</div>;
+
+    if (!data || data.length === 0) {
+        return <div>No payroll data available</div>;
+    }
+  
+    return (
+        <div className="employee-payroll">
             <table>
                 <thead>
                     <tr>
@@ -19,14 +29,14 @@ const EmployeePayroll = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {payroll.map((item, index) => (
-                        <tr key={index}>
-                            <td>${item.grossPay}</td>
-                            <td>${item.deductions}</td>
-                            <td>${item.netPay}</td>
-                            <td>{item.payrollDate}</td>
-                        </tr>
-                    ))}
+   
+                    <tr><td>{data[0].GrossPay}</td>
+                        <td>{data[0].TotalDeductions}</td>
+                        <td>{data[0].NetPay}</td>
+                        <td>{data[0].PayrollDate}</td>
+                        
+                    </tr>
+
                 </tbody>
             </table>
         </div>
