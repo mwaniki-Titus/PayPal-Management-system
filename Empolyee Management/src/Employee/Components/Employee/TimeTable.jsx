@@ -1,37 +1,37 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './TimeTable.scss';
 
-const TimeTable = ({ onTimeInChange, onTimeOutChange, onSubmit }) => {
+const TimeTable = ({ onSubmit }) => {
     const [timeIn, setTimeIn] = useState('');
     const [timeOut, setTimeOut] = useState('');
     const [duration, setDuration] = useState('');
 
+    useEffect(() => {
+        let interval;
+        if (timeIn && !timeOut) {
+            interval = setInterval(() => {
+                const startTime = new Date(timeIn);
+                const currentTime = new Date();
+                const difference = currentTime - startTime;
+                const hours = Math.floor(difference / 3600000);
+                const minutes = Math.floor((difference % 3600000) / 60000);
+                setDuration(`${hours} hours ${minutes} minutes`);
+            }, 1000);
+        } else {
+            clearInterval(interval);
+        }
+
+        return () => clearInterval(interval);
+    }, [timeIn, timeOut]);
+
     const handleTimeInChange = (e) => {
         const newTimeIn = e.target.value;
         setTimeIn(newTimeIn);
-        onTimeInChange(newTimeIn);
-        calculateDuration(newTimeIn, timeOut);
     };
 
     const handleTimeOutChange = (e) => {
         const newTimeOut = e.target.value;
         setTimeOut(newTimeOut);
-        onTimeOutChange(newTimeOut);
-        calculateDuration(timeIn, newTimeOut);
-    };
-
-    const calculateDuration = (newTimeIn, newTimeOut) => {
-        if (newTimeIn && newTimeOut) {
-            const startTime = new Date('1970-01-01T' + newTimeIn);
-            const endTime = new Date('1970-01-01T' + newTimeOut);
-            const difference = endTime - startTime;
-            const hours = Math.floor(difference / 3600000);
-            const minutes = Math.floor((difference % 3600000) / 60000);
-            setDuration(`${hours} hours ${minutes} minutes`);
-        } else {
-            setDuration('');
-        }
     };
 
     const handleSubmit = (e) => {
@@ -44,7 +44,7 @@ const TimeTable = ({ onTimeInChange, onTimeOutChange, onSubmit }) => {
             <div>
                 <label htmlFor="timeIn">Clock In:</label>
                 <input
-                    type="time"
+                    type="datetime-local"
                     id="timeIn"
                     value={timeIn}
                     onChange={handleTimeInChange}
@@ -54,7 +54,7 @@ const TimeTable = ({ onTimeInChange, onTimeOutChange, onSubmit }) => {
             <div>
                 <label htmlFor="timeOut">Clock Out:</label>
                 <input
-                    type="time"
+                    type="datetime-local"
                     id="timeOut"
                     value={timeOut}
                     onChange={handleTimeOutChange}
@@ -68,4 +68,3 @@ const TimeTable = ({ onTimeInChange, onTimeOutChange, onSubmit }) => {
 };
 
 export default TimeTable;
-
