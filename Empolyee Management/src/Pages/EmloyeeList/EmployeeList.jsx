@@ -128,9 +128,4 @@ const EmployeeList = () => {
 
 export default EmployeeList;
 
-
-
-
-
-
-         <th>Employee ID</th>
+<th>Employee ID</th>

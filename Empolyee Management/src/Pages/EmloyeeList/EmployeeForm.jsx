@@ -44,7 +44,7 @@ const ModalForm = ({ isOpen, onClose, onSubmit }) => {
     };
 
     const handleClose = () => {
-        // Reset form state and close the modal
+       
         setNewEmployee({
             FirstName: '',
             LastName: '',
